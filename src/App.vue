@@ -1,22 +1,17 @@
 <template>
   <div id="app" class="w-full">
-      <!-- <restaurants-list />
-      <restaurant-info /> -->
+      <navbar />
       <router-view></router-view>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import RestaurantsList from './pages/RestaurantsList'
-// import RestaurantInfo from './pages/RestaurantInfo'
+import Navbar from './components/Navbar'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld
-    // RestaurantsList,
-    // RestaurantInfo,
+    Navbar
   }
 }
 </script>

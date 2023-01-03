@@ -1,5 +1,8 @@
 <template>
     <div class="flex flex-wrap justify-around">
+        <div class="flex justify-center w-full mt-8">
+            <h1 class="text-3xl font-bold">Liste des restaurants</h1>
+        </div>
         <div v-for="restaurant in restaurants" v-bind:key="restaurant.id" class="p-10" >
             <div class="rounded-lg shadow-lg bg-white max-w-md">
                 <router-link :to="{name: 'RestaurantInfo', params: { restaurant: restaurant, id: restaurant.id }}">
