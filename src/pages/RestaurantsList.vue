@@ -2,9 +2,9 @@
     <div class="flex flex-wrap justify-around">
         <div v-for="restaurant in restaurants" v-bind:key="restaurant.id" class="p-10" >
             <div class="rounded-lg shadow-lg bg-white max-w-md">
-                <a href="#">
+                <router-link :to="{name: 'RestaurantInfo', params: { restaurant: restaurant, id: restaurant.id }}">
                     <img class="rounded-t-lg" :src="restaurant.img" alt=""/>
-                    </a>
+                </router-link>
                     <div class="p-6">
                         <h5 class="text-gray-900 text-xl font-medium mb-2">{{ restaurant.name }}</h5>
                         <p class="text-gray-700 text-base mb-4">

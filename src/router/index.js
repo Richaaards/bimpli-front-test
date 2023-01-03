@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import RestaurantsList from '../pages/RestaurantsList'
+import RestaurantInfo from '../pages/RestaurantInfo'
 
 Vue.use(VueRouter);
 
@@ -8,6 +9,11 @@ const routes = [
     {
         path: '/',
         component: RestaurantsList,
+    },
+    {
+        path: '/restaurants/:id',
+        name: 'RestaurantInfo',
+        component: RestaurantInfo,
     },
 ]
 
