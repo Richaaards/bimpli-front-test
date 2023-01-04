@@ -2,90 +2,131 @@
     <div class="flex flex-wrap p-8">        
         <section
             class="overflow-hidden bg-no-repeat bg-cover w-full"
-            style="
-                background-position: 50%;
-                background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/146.webp');
-                height: 500px;
-            "
+            :style="{
+                'background-image': `url(${this.$route.params.restaurant.cover_picture})`,
+                'background-position': '50%',
+                'height': '500px',
+            }"
         >
         </section>
 
         <section class="my-8 w-full text-left">
-            <h2 class="text-3xl font-bold">{{ this.$route.params.restaurant.name }}</h2>
-            <h3 class="text-2xl uppercase font-normal">{{ this.$route.params.restaurant.location }}</h3>
+            <h2 class="text-3xl font-bold mb-6">{{ this.$route.params.restaurant.name }}</h2>
+            <h3 class="text-2xl uppercase font-normal">{{ this.$route.params.restaurant.street_address }}</h3>
+            <h3 class="text-2xl uppercase font-normal">{{ this.$route.params.restaurant.zip_code }} {{ this.$route.params.restaurant.city }}</h3>
         </section>
 
         <div class="flex flex-col">
             <h2 class="text-2xl font-bold">Menu</h2>
         </div>
-        <div class="flex w-full rounded-lg shadow-lg mb-8">
-            <div class="p-4 flex-col w-full">
-                <h5 class="text-left text-2xl font-bold mb-2">Entrées</h5>
-                <div class="flex justify-between">
-                    <div class="flex-col">
-                        <p class="text-left text-base">
-                            Potatoes
-                        </p>
-                    </div>
-                    <div class="flex-col">
-                        <p class="text-right text-base">
-                            2,80€
-                        </p>
+        <section 
+            class="flex flex-col w-full rounded-lg shadow-lg mb-8 py-2"
+        >   
+            <div class=w-full> 
+                <h5 class="text-left text-2xl font-bold m-4">Entrées</h5>
+            </div>
+            <div 
+                v-for="(item) in this.$route.params.restaurant.dishes.data"
+                :key="item.id"
+            >
+                <div v-if="item.type === 'starter'">
+                    <div class="flex justify-between px-4 py-1">
+                        <div class="flex-row">
+                            <p class="text-left text-base">
+                                {{ item.name }}
+                            </p>
+                        </div>
+                        <div class="flex-row	">
+                            <p class="text-right text-base">
+                                {{ Math.round(item.price /100) }},00 €
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex w-full rounded-lg shadow-lg mb-8">
-            <div class="p-4 flex flex-col w-full">
-                <h5 class="text-left text-2xl font-bold mb-2">Plats</h5>
-                <div class="flex justify-between">
-                    <div class="flex-col">
-                        <p class="text-left text-base">
-                            Basic Burger 
-                        </p>
-                    </div>
-                    <div class="flex-col">
-                        <p class="text-right text-base">
-                            5,00€
-                        </p>
+        </section>
+
+        <section 
+            class="flex flex-col w-full rounded-lg shadow-lg mb-8 py-2"
+        >   
+            <div class=w-full> 
+                <h5 class="text-left text-2xl font-bold m-4">Plats</h5>
+            </div>
+            <div 
+                v-for="(item) in this.$route.params.restaurant.dishes.data"
+                :key="item.id"
+            >
+                <div v-if="item.type === 'main'">
+                    <div class="flex justify-between px-4 py-1">
+                        <div class="flex-row">
+                            <p class="text-left text-base">
+                                {{ item.name }}
+                            </p>
+                        </div>
+                        <div class="flex-row	">
+                            <p class="text-right text-base">
+                                {{ Math.round(item.price /100) }},00 €
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex w-full rounded-lg shadow-lg mb-8">
-            <div class="p-4 flex flex-col w-full">
-                <h5 class="text-left text-2xl font-bold mb-2">Desserts</h5>
-                <div class="flex justify-between">
-                    <div class="flex-col">
-                        <p class="text-left text-base">
-                            Vanilla Ice cream
-                        </p>
-                    </div>
-                    <div class="flex-col">
-                        <p class="text-right text-base">
-                            2,50€
-                        </p>
+        </section>
+
+        <section 
+            class="flex flex-col w-full rounded-lg shadow-lg mb-8 py-2"
+        >   
+            <div class=w-full> 
+                <h5 class="text-left text-2xl font-bold m-4">Désserts</h5>
+            </div>
+            <div 
+                v-for="(item) in this.$route.params.restaurant.dishes.data"
+                :key="item.id"
+            >
+                <div v-if="item.type === 'dessert'">
+                    <div class="flex justify-between px-4 py-1">
+                        <div class="flex-row">
+                            <p class="text-left text-base">
+                                {{ item.name }}
+                            </p>
+                        </div>
+                        <div class="flex-row	">
+                            <p class="text-right text-base">
+                                {{ Math.round(item.price / 100) }},00 €
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex w-full rounded-lg shadow-lg mb-8">
-            <div class="p-4 flex flex-col w-full">
-                <h5 class="text-left text-2xl font-bold mb-2">Boissons</h5>
-                <div class="flex justify-between">
-                    <div class="flex-col">
-                        <p class="text-left text-base">
-                            Coca Cola
-                        </p>
-                    </div>
-                    <div class="flex-col">
-                        <p class="text-right text-base">
-                            2,00€
-                        </p>
+        </section>
+
+        <section 
+            class="flex flex-col w-full rounded-lg shadow-lg mb-8 py-2"
+        >   
+            <div class=w-full> 
+                <h5 class="text-left text-2xl font-bold m-4">Boissons</h5>
+            </div>
+            <div 
+                v-for="(item) in this.$route.params.restaurant.dishes.data"
+                :key="item.id"
+            >
+                <div v-if="item.type === 'drink'">
+                    <div class="flex justify-between px-4 py-1">
+                        <div class="flex-row">
+                            <p class="text-left text-base">
+                                {{ item.name }}
+                            </p>
+                        </div>
+                        <div class="flex-row">
+                            <p class="text-right text-base">
+                                {{ Math.round(item.price /100) }},00 €
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
     </div>
 </template>
 
@@ -93,5 +134,12 @@
 
 export default {
     name: 'RestaurantInfo',
+    props: ['id'],
+    data() {
+        return {
+            // id: this.$route.params.id,
+            // restaurant: {},
+        }
+    },
 }
 </script>
