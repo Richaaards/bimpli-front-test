@@ -19,120 +19,38 @@
         <div class="flex flex-col">
             <h2 class="text-2xl font-bold">Menu</h2>
         </div>
-        <section 
-            class="flex flex-col w-full rounded-lg shadow-lg mb-8 py-2"
-        >   
-            <div class=w-full> 
-                <h5 class="text-left text-2xl font-bold m-4">Entrées</h5>
-            </div>
-            <div 
-                v-for="(item) in this.$route.params.restaurant.dishes.data"
-                :key="item.id"
-            >
-                <div v-if="item.type === 'starter'">
-                    <div class="flex justify-between px-4 py-1">
-                        <div class="flex-row">
-                            <p class="text-left text-base">
-                                {{ item.name }}
-                            </p>
-                        </div>
-                        <div class="flex-row	">
-                            <p class="text-right text-base">
-                                {{ Math.round(item.price /100) }},00 €
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <menu-section
+            :menuTypeTitle="'Entrées'"
+            :items="this.$route.params.restaurant.dishes.data"
+            :menuType="'starter'"
+        />
+        
+        <menu-section
+            :menuTypeTitle="'Plats'"
+            :items="this.$route.params.restaurant.dishes.data"
+            :menuType="'main'"
+        />
 
-        <section 
-            class="flex flex-col w-full rounded-lg shadow-lg mb-8 py-2"
-        >   
-            <div class=w-full> 
-                <h5 class="text-left text-2xl font-bold m-4">Plats</h5>
-            </div>
-            <div 
-                v-for="(item) in this.$route.params.restaurant.dishes.data"
-                :key="item.id"
-            >
-                <div v-if="item.type === 'main'">
-                    <div class="flex justify-between px-4 py-1">
-                        <div class="flex-row">
-                            <p class="text-left text-base">
-                                {{ item.name }}
-                            </p>
-                        </div>
-                        <div class="flex-row	">
-                            <p class="text-right text-base">
-                                {{ Math.round(item.price /100) }},00 €
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <menu-section
+            :menuTypeTitle="'Désserts'"
+            :items="this.$route.params.restaurant.dishes.data"
+            :menuType="'dessert'"
+        />
 
-        <section 
-            class="flex flex-col w-full rounded-lg shadow-lg mb-8 py-2"
-        >   
-            <div class=w-full> 
-                <h5 class="text-left text-2xl font-bold m-4">Désserts</h5>
-            </div>
-            <div 
-                v-for="(item) in this.$route.params.restaurant.dishes.data"
-                :key="item.id"
-            >
-                <div v-if="item.type === 'dessert'">
-                    <div class="flex justify-between px-4 py-1">
-                        <div class="flex-row">
-                            <p class="text-left text-base">
-                                {{ item.name }}
-                            </p>
-                        </div>
-                        <div class="flex-row	">
-                            <p class="text-right text-base">
-                                {{ Math.round(item.price / 100) }},00 €
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section 
-            class="flex flex-col w-full rounded-lg shadow-lg mb-8 py-2"
-        >   
-            <div class=w-full> 
-                <h5 class="text-left text-2xl font-bold m-4">Boissons</h5>
-            </div>
-            <div 
-                v-for="(item) in this.$route.params.restaurant.dishes.data"
-                :key="item.id"
-            >
-                <div v-if="item.type === 'drink'">
-                    <div class="flex justify-between px-4 py-1">
-                        <div class="flex-row">
-                            <p class="text-left text-base">
-                                {{ item.name }}
-                            </p>
-                        </div>
-                        <div class="flex-row">
-                            <p class="text-right text-base">
-                                {{ Math.round(item.price /100) }},00 €
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <menu-section
+            :menuTypeTitle="'Boissons'"
+            :items="this.$route.params.restaurant.dishes.data"
+            :menuType="'drink'"
+        />
 
     </div>
 </template>
 
 <script>
+import MenuSection from '../components/MenuSection'
 
 export default {
+	components: { MenuSection },
     name: 'RestaurantInfo',
     props: ['id'],
     data() {
