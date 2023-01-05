@@ -1,19 +1,26 @@
 <template>
     <div class="flex flex-wrap justify-around">
-        <div class="flex justify-center w-full mt-8">
+        <div class="flex w-full justify-center mt-8">
             <h1 class="text-3xl font-bold">Liste des restaurants</h1>
         </div>
-        <div v-for="restaurant in restaurants" v-bind:key="restaurant.id" class="p-10" >
-            <div class="rounded-lg shadow-lg bg-white max-w-md mx-8">
+        <div v-for="restaurant in restaurants" v-bind:key="restaurant.id" class="p-12 mb-20">
+            <div class="wrapper bg-gray-400 antialiased text-gray-900">
                 <router-link :to="{name: 'RestaurantInfo', params: { restaurant: restaurant, id: restaurant.id }}">
-                <img class="rounded-t-lg" :src="restaurant.profile_picture" alt=""/>
+                    <img :src="restaurant.profile_picture" alt="restaurant dish picture" class="w-full object-cover object-center rounded-t-lg shadow-md">    
                 </router-link>
-                <div class="p-6">
-                    <h5 class="text-gray-900 text-xl font-medium mb-2">{{ restaurant.name }}</h5>
-                    <p class="text-gray-700 text-base mb-4">
-                        {{ restaurant.city }} {{ restaurant.category_label }}
-                    </p>
-                    <div class="rounded-full bg-blue-300 w-6">{{ restaurant.ratings_count }}</div>
+                <div class="relative px-4 -mt-16 bg-white flex justify-center">
+                    <div class="absolute bg-white p-5 rounded-lg shadow-lg w-10/12">
+                        <div class="flex flex-row justify-between">
+                            <h2 class="mt-1 text-gray-900 text-2xl font-extrabold leading-tight truncate">{{ restaurant.name }}</h2>
+                            <div class="rounded-full bg-gray-300 w-8 shadow-lg flex justify-center items-center">{{ restaurant.ratings_count }}</div>
+                        </div>
+                        <div>
+                            <p class="text-gray-700 text-left uppercase font-semibold mb-4">{{ restaurant.city }}</p>
+                        </div>
+                        <div class="flex flex-start">
+                            <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-400 text-black rounded">{{ restaurant.category_label }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
